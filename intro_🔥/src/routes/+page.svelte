@@ -1,6 +1,7 @@
 <script>
 	import PageContainer from './../lib/components/utils/PageContainer.svelte';
 	import { siteTitle } from '$lib/config';
+
 	export let data;
 	let name = 'Solomon';
 </script>
