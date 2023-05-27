@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { img } from '$lib/components/custom';
+	import { img } from '$lib/content/utils';
 	export { img };
 </script>
 
