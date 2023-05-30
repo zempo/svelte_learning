@@ -1,13 +1,28 @@
-# Learning Sveltekit 👨‍💻
-
 <!-- prettier-ignore-start -->
-> Markdown Blogs 🗞, Threlte ✴, and More...
+Learning Sveltekit 👨‍💻
+> Markdown 🗞, Threlte ✴, and More...
 
-### Bookmarks
+- [Tutorial Resources](#tutorial-resources)
+- [Useful Snippets](#useful-snippets)
 
-```js
-<script>
-console.log("Here are some useful bookmarks!");
-</script>
+---
+
+#### Tutorial Resources
+
+Joy of Code 
+- [Routing Tutorial](https://www.youtube.com/watch?v=7hXHbGj6iE0&ab_channel=JoyofCode)
+- [Markdown Blog Tutorial](https://www.youtube.com/watch?v=RhScu3uqGd0)
+
+Huntabyte
+
+#### Useful Snippets
+
+```html
+<!-- Preloads page data on hover!
+     You can do this with multiple components! -->
+<body data-sveltekit-preload-data="hover">
+  <div style="display: contents">%sveltekit.body%</div>
+</body>
 ```
+
 <!-- prettier-ignore-end -->

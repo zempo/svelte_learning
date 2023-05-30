@@ -1,6 +1,7 @@
 <script>
 	import PageContainer from './../../lib/components/utils/PageContainer.svelte';
 	import { siteDescription } from '$lib/config';
+	import { onDestroy, onMount } from 'svelte';
 
 	const people = [
 		{
@@ -8,7 +9,10 @@
 			job: `accountant`
 		}
 	];
-	console.table(people);
+	// console.table(people);
+
+	onMount(() => console.log(`Mounted posts page`));
+	onDestroy(() => console.log('Unmounted posts page'));
 </script>
 
 <svelte:head>
