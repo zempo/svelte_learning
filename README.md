@@ -9,11 +9,12 @@ Learning Sveltekit 👨‍💻
 
 #### Tutorial Resources
 
-Joy of Code 
+▶ Joy of Code
 - [Routing Tutorial](https://www.youtube.com/watch?v=7hXHbGj6iE0&ab_channel=JoyofCode)
 - [Markdown Blog Tutorial](https://www.youtube.com/watch?v=RhScu3uqGd0)
 
-Huntabyte
+▶ Huntabyte
+- [Dynamic Routes && Slugs w/ Params](https://www.youtube.com/watch?v=gNgQFF-tmuo&ab_channel=Huntabyte)
 
 #### Useful Snippets
 

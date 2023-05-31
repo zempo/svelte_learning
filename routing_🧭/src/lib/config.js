@@ -15,5 +15,17 @@ export const navItems = [
 	{
 		title: `Posts`,
 		path: `/posts`
+	},
+	{
+		title: `Images`,
+		path: '/image'
+	},
+	{
+		title: `Optional Params`,
+		path: '/about'
+	},
+	{
+		title: `Rest Params`,
+		path: '/media'
 	}
 ];
