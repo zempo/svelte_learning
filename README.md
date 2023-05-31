@@ -30,7 +30,7 @@ Learning Sveltekit 👨‍💻
 
 #### Useful Snippets
 
-```html
+```html:app.html showLineNumbers
 <!-- Preloads page data on hover!
      You can do this with multiple components! -->
 <body data-sveltekit-preload-data="hover">
