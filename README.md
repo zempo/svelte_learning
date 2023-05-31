@@ -2,10 +2,22 @@
 Learning Sveltekit 👨‍💻
 > Markdown 🗞, Threlte ✴, and More...
 
+- [Overview](#overview)
 - [Tutorial Resources](#tutorial-resources)
 - [Useful Snippets](#useful-snippets)
 
 ---
+
+#### Overview
+
+- Building a sveltekit project from scratch: Using pnpm, setting up configuration, etc...
+  [from_scratch_🧩](from_scratch_🧩/package.json)
+
+- Building a markdown blog: Using pnpm, mdsvex, making your own api, etc...
+  [blog_📰](blog_📰/package.json)
+
+- Going over the basics (and not so basics) of sveltekit's routing system.
+  [routing_🧭](routing_🧭/package.json)
 
 #### Tutorial Resources
 
