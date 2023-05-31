@@ -4,8 +4,8 @@
 
 		<nav>
 			<ul>
-				<li><a href="/posts/1">Post 1</a></li>
-				<li><a href="/posts/2">Post 2</a></li>
+				<li><a href="/posts/one">Post 1</a></li>
+				<li><a href="/posts/two">Post 2</a></li>
 			</ul>
 		</nav>
 	</aside>

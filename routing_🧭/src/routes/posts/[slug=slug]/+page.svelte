@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import PageContainer from './../../../lib/components/utils/PageContainer.svelte';
+	import PageContainer from '../../../lib/components/utils/PageContainer.svelte';
 </script>
 
 <PageContainer pgClass="post_page">
