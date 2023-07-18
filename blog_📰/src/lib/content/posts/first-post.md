@@ -12,7 +12,7 @@ published: true
 
 Hey friends! 👋
 
-```ts
+```ts showLineNumbers
 function greet(name: string) {
 	console.log(`Hey ${name}! 👋`);
 }

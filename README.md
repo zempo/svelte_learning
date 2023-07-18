@@ -22,15 +22,18 @@ Learning Sveltekit 👨‍💻
 #### Tutorial Resources
 
 ▶ Joy of Code
+- [Sveltekit for Beginners Playlist](https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zXZZyW4qfj0akvOAtk6MFS)
+- [Sveltekit Intermediate Playlist](https://www.youtube.com/playlist?list=PLA9WiRZ-IS_zfHpxmztJQLeBISsQkh9-M)
 - [Routing Tutorial](https://www.youtube.com/watch?v=7hXHbGj6iE0&ab_channel=JoyofCode)
 - [Markdown Blog Tutorial](https://www.youtube.com/watch?v=RhScu3uqGd0)
 
 ▶ Huntabyte
-- [Dynamic Routes && Slugs w/ Params](https://www.youtube.com/watch?v=gNgQFF-tmuo&ab_channel=Huntabyte)
+- [Svelte & Sveltekit Playlist](https://www.youtube.com/playlist?list=PLq30BP0TIcqXP149TyFMfRhnMT6T5--e5)
 
 #### Useful Snippets
 
-```html:app.html showLineNumbers
+<!-- TODO look up :app.html showLineNumbers... -->
+```html {.line-numbers}
 <!-- Preloads page data on hover!
      You can do this with multiple components! -->
 <body data-sveltekit-preload-data="hover">

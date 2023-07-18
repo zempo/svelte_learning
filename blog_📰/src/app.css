@@ -158,3 +158,15 @@ li {
 	border-radius: 8px;
 	tab-size: 2;
 }
+
+code[data-line-numbers] > span[data-line-number]::before {
+	/* Insert the line number data attribute before the line */
+	content: attr(data-line-number);
+	/* Other styling */
+	display: inline-block;
+	width: 1rem;
+	margin-right: 1rem;
+	margin-left: 1rem;
+	text-align: right;
+	color: gray;
+}

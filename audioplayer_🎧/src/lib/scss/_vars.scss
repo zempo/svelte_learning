@@ -1,0 +1,123 @@
+html[data-theme='dark'] {
+	//  *MAIN
+	--bgdDim: #373737;
+	--bgdMain: #363434;
+	--bgdGradient: linear-gradient(147deg, #272626 0%, #2c2c2c 74%);
+	--bgdLight: #514f4d;
+	--bgdLighter: #696662;
+	// --textMain: #dadada;
+	--textHeading: #dadada;
+	// --textMain: #b3b3b3;
+	--textCursor: #cbcbcbbb;
+	--textMain: #a4a19e;
+	--textDim: #a4a19ed2;
+	--textFooter: #000000;
+	--textNav: #b3b3b3;
+	--textFade: rgba(98, 103, 121, 0.472);
+	--inactive: #aca4a4b5;
+
+	--boxBgd: #474543;
+	--selectDefault: #157efb;
+	--selectBlog: #da5e98;
+	--selectVO: #46c3c5;
+	--selectPoetry: #45c366;
+	--selectCode: #c8b63b;
+	--selectHome: #dadada;
+	--selectAbout: #a954ff;
+	--selectPay: #ff9b37;
+	--selectContact: #3e71ff;
+
+	//  *THEME COLORS
+	--homeAccent: #dadada;
+	--aboutAccent: #ae28d3;
+	--payAccent: #bf6e1c;
+	--contactAccent: #1d59d3;
+	--blogAccent: #c11967;
+	--voAccent: #278a8c;
+	--poetryAccent: #0f7c39;
+	--codeAccent: #b38205;
+
+	--homeLight: #adafb1;
+	--aboutLight: #c977e4;
+	--payLight: #f0ab7f;
+	--contactLight: #8e95f5;
+	--blogLight: #de629c;
+	--voLight: #50e3e8;
+	--poetryLight: #52f08f;
+	--codeLight: #edc55f;
+
+	//  *FOOTER
+	// --footerBdg: #6c2245;
+	// --footerGradient: linear-gradient(160deg, #b83f77 30%, #40afb0 65%, #42bd63 100%);
+	--footerBdg: #6c2245;
+	--footerGradient: linear-gradient(160deg, #ca4483 30%, #47c3c5 65%, #42cc66 100%);
+	-webkit-transition: var(--transitionMain);
+	transition: var(--transitionMain);
+}
+
+html[data-theme='light'] {
+	// *MAIN
+	--bgdDim: #ece9e3;
+	// --bgdMain: #eae8e2;#f4f1ec
+	--bgdMain: #f4f1ec;
+	--bgdGradient: linear-gradient(315deg, #f4f1ec 0%, #f4f1ec 74%);
+	--bgdLight: #f2efea;
+	--bgdLighter: #fbf9f6;
+	--textHeading: #252222;
+	--textMain: #3b3737;
+	--textCursor: #676565fe;
+	--textNav: #000000;
+	--textFooter: #4c442e;
+	--textDim: #837f7f;
+	--textFade: rgba(52, 51, 51, 0.1);
+	--inactive: #a9a9a9;
+	// *Content Box
+	// --boxBgd: #eae8e2;
+	--boxBgd: #e5e3dd;
+	--selectDefault: #157efb;
+	--selectBlog: #b63a74;
+	--selectVO: #28a8aa;
+	--selectPoetry: #38a054;
+	--selectCode: #c49725;
+	--selectHome: #313235;
+	--selectAbout: #9f33ed;
+	--selectPay: #ec8337;
+	--selectContact: #157efb;
+
+	//  *THEME COLORS
+	--homeAccent: #424c5e;
+	--aboutAccent: #a231c8;
+	--payAccent: #c86b31;
+	--contactAccent: #313bc8;
+	--blogAccent: #c8315e;
+	--voAccent: #39b8bb;
+	--poetryAccent: #1cab53;
+	--codeAccent: #edac01;
+
+	--homeLight: #d4d5d6;
+	--aboutLight: #e2a2f7;
+	--payLight: #fac6a5;
+	--contactLight: #b1b6f8;
+	--blogLight: #f2c9d5;
+	--voLight: #c8edee;
+	--poetryLight: #c0f6d5;
+	--codeLight: #ffe9b1;
+
+	// *FOOTER
+	// --footerBdg: rgba(242, 201, 213, 1);
+	// --footerGradient: linear-gradient(
+	// 	160deg,
+	// 	rgba(242, 201, 213, 1) 30%,
+	// 	rgba(200, 237, 238, 1) 65%,
+	// 	rgba(192, 246, 213, 1) 100%
+	// );
+	--footerBdg: rgb(238, 171, 191);
+	--footerGradient: linear-gradient(
+		160deg,
+		rgb(238, 171, 191) 30%,
+		rgb(155, 229, 232) 65%,
+		rgb(163, 237, 191) 100%
+	);
+	-webkit-transition: var(--transitionMain);
+	transition: var(--transitionMain);
+}
