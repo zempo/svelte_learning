@@ -1,7 +1,7 @@
 <script>
 	import '$lib/scss/global.scss';
 	import AudioPlayer from './audio/AudioPlayer.svelte';
-	import { audioData } from './audio/data';
+	import { audioData } from './audio/scripts/data';
 </script>
 
 <main class="container">
