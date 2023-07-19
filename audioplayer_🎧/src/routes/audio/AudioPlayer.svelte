@@ -16,7 +16,7 @@
 		slider.updateProgress();
 	};
 
-	$: console.log(audioData);
+	// $: console.log(audioData);
 
 	let trackIdx = 0;
 	let currFile;
