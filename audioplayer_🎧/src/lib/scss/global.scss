@@ -1,5 +1,6 @@
-html[data-theme='dark'] {
+html[data-theme='🌛 Night'] {
 	//  *MAIN
+	color-scheme: dark;
 	--bgdDim: #373737;
 	--bgdMain: #363434;
 	--bgdGradient: linear-gradient(147deg, #272626 0%, #2c2c2c 74%);
@@ -50,7 +51,7 @@ html[data-theme='dark'] {
 	// *AUDIO
 	--playerPrimary: #535146;
 	--playerPrimaryLight: #646254;
-	--playerSecondary: #e8e7e3;
+	--playerSecondary: #bdbaaa;
 	--playerYellow: #fff45a;
 	--playerOrange: #e2643a;
 	--player1: #252a34;
@@ -69,7 +70,8 @@ html[data-theme='dark'] {
 	transition: var(--transitionMain);
 }
 
-html[data-theme='light'] {
+html[data-theme='☀️ Daylight'] {
+	color-scheme: light;
 	// *MAIN
 	--bgdDim: #ece9e3;
 	// --bgdMain: #eae8e2;#f4f1ec

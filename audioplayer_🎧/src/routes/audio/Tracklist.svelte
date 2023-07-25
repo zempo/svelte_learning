@@ -34,13 +34,17 @@
 <style lang="scss">
 	.tracklist_container {
 		border: 1px solid green;
+		color: black;
+		font-weight: bold;
 		button {
 			width: 100%;
 			background: transparent;
 			border: 1px solid var(--textFade);
 			padding: 0.5rem;
 			cursor: pointer;
+			font-weight: bold;
 			// margin-bottom: 0;
+			color: rgb(6, 4, 23);
 		}
 		.tracks_list {
 			margin: 0;
