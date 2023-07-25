@@ -33,32 +33,36 @@
 
 <style lang="scss">
 	.tracklist_container {
-		border: 1px solid green;
-		color: black;
+		// border: 1px solid green;
+		color: var(--player6);
 		font-weight: bold;
+		// border-bottom-left-radius: 0.3rem;
+		// border-bottom-right-radius: 0.3rem;
 		button {
 			width: 100%;
-			background: transparent;
-			border: 1px solid var(--textFade);
+			background: var(--playerBtnBgd);
+			color: var(--player6);
+			border: none;
 			padding: 0.5rem;
 			cursor: pointer;
 			font-weight: bold;
 			// margin-bottom: 0;
-			color: rgb(6, 4, 23);
 		}
 		.tracks_list {
 			margin: 0;
 			// height: 0;
 			overflow: auto;
-			border: 1px solid blue;
-			// transition: height 0.3s;
+			background: var(--player1);
 			list-style-type: none;
 			padding-left: 0;
 			height: auto;
-
 			li {
 				padding: 0.5rem 1.75rem;
 				cursor: pointer;
+				color: white;
+				&:hover {
+					background: var(--player2);
+				}
 			}
 		}
 	}

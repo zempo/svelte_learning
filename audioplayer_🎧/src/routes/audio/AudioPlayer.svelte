@@ -47,8 +47,11 @@
 		width: 100%;
 		max-width: 800px;
 		margin: auto;
+		border: 1px solid var(--textFade);
+		border-radius: 0.6rem;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 		.player_body {
-			background: var(--playerSecondary);
+			background: var(--player2);
 		}
 	}
 </style>

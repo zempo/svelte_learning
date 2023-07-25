@@ -15,10 +15,10 @@
 <style lang="scss">
 	/* @import "lib/assets/scss/..." */
 	.audio_header {
-		border-top-left-radius: 0.3rem;
-		border-top-right-radius: 0.3rem;
-		background: var(--playerPrimary);
-		color: white;
+		background: var(--player1);
+		border-top-left-radius: 0.6rem;
+		border-top-right-radius: 0.6rem;
+		color: var(--player6);
 		text-align: center;
 		// line-height: 2;
 		display: flex;
@@ -29,7 +29,7 @@
 			margin: 0;
 		}
 		.btn_download {
-			background-color: var(--playerPrimaryLight);
+			background-color: var(--player2);
 			border: 1px solid var(--textFade);
 			padding: 0.2rem;
 			border-radius: 0.2rem;
