@@ -21,10 +21,11 @@
 
 <style lang="scss">
 	.slider {
-		padding: 0.75rem 2rem;
+		padding: 1.5rem 2rem 0.75rem;
 		// border: 1px solid red;
 		input[type='range'] {
 			width: 100%;
+			margin: auto;
 			accent-color: var(--player3);
 		}
 	}

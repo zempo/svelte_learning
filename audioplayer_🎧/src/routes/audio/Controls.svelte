@@ -1,44 +1,25 @@
 <script>
-	import { onMount } from 'svelte';
+	// @ts-nocheck
 	import { getPlaybackSpeed } from './scripts/audioHelpers';
 	import { backBtn, fwdBtn, pauseBtn, playBtn, repeatBtn, repeatBtnOn } from './scripts/icons';
-
-	let isPlaying = false;
-	let loopOn = false;
-	let speedIdx = 3;
-	let speed = 1;
-
-	onMount(() => {
-		// speed = 1
-	});
-
-	const togglePlaying = () => {
-		isPlaying = !isPlaying;
-	};
-
-	const toggleSpeed = () => {
-		let speeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75];
-		if (speedIdx === speeds.length - 1) {
-			speedIdx = 0;
-		} else {
-			speedIdx += 1;
-		}
-		speed = speeds[speedIdx];
-	};
-
-	const toggleLoop = () => {
-		loopOn = !loopOn;
-	};
+	import {
+		loopOn,
+		isPlaying,
+		speed,
+		togglePlay,
+		toggleLoop,
+		toggleSpeed
+	} from './scripts/audioStore';
 </script>
 
 <div class="player_controls">
 	<div class="control_grp left">
 		<button
-			class={`repeat_btn ${loopOn ? 'loop_on' : 'loop_off'}`}
+			class={`repeat_btn ${$loopOn ? 'loop_on' : 'loop_off'}`}
 			on:click={toggleLoop}
 			title="Loop Track"
 		>
-			{#if loopOn}
+			{#if $loopOn}
 				{@html repeatBtnOn}
 			{:else}
 				{@html repeatBtn}
@@ -49,8 +30,8 @@
 		<button class="back_btn" title="Back 10 secs">
 			{@html backBtn} 10
 		</button>
-		<button class="play_btn" on:click={togglePlaying}>
-			{#if isPlaying}
+		<button class="play_btn" on:click={togglePlay}>
+			{#if $isPlaying}
 				{@html pauseBtn}
 			{:else}
 				{@html playBtn}
@@ -62,9 +43,9 @@
 	</div>
 	<div class="control_grp right">
 		<button class="speed_btn" on:click={toggleSpeed} title="Playback Speed">
-			{@html getPlaybackSpeed(speed)}
+			{@html getPlaybackSpeed($speed)}
 			<span class="speed_label">
-				{speed}x
+				{$speed}x
 			</span>
 		</button>
 	</div>
@@ -72,16 +53,17 @@
 
 <style lang="scss">
 	.player_controls {
-		padding: 0.75rem 2rem;
+		padding: 0.75rem 0.25rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		max-width: 100%;
+		margin-bottom: 0.5rem;
 		.control_grp {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin: auto 0;
+			margin: auto 1vw;
 			// .left {
 			// }
 			.repeat_btn {

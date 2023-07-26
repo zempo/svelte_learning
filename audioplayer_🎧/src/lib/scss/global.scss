@@ -205,11 +205,14 @@ html[data-theme='☀️ Daylight'] {
 html {
 	background-color: var(--bgdMain);
 }
+.container {
+	width: 100vw;
+}
 
 .content_box {
 	display: block;
 	background: var(--boxBgd);
-	width: 100%;
+	width: calc(100% - 4rem);
 	max-width: 1150px;
 	border: 1px solid var(--textFade);
 	padding: 0.75rem 2rem;

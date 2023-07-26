@@ -1,12 +1,12 @@
 <script>
 	// @ts-nocheck
 
+	import { trackTitle } from './scripts/audioStore.js';
 	import { downloadIcon } from './scripts/icons.js';
-	export let title;
 </script>
 
 <div class="audio_header">
-	<h3>{title}</h3>
+	<h3>{$trackTitle}</h3>
 	<button title="Download Track" class="download_btn">
 		{@html downloadIcon}
 	</button>
