@@ -7,7 +7,7 @@
 
 <div class="audio_header">
 	<h3>{title}</h3>
-	<button title="Download Track" class="btn_download">
+	<button title="Download Track" class="download_btn">
 		{@html downloadIcon}
 	</button>
 </div>
@@ -28,7 +28,7 @@
 		h3 {
 			margin: 0;
 		}
-		.btn_download {
+		.download_btn {
 			background-color: var(--player2);
 			border: 1px solid var(--textFade);
 			padding: 0.2rem;

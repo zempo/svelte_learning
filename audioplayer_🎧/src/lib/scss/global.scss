@@ -1,3 +1,30 @@
+$breakpoints: (
+	'phone-small': 350px,
+	'phone': 400px,
+	'phone-wide': 480px,
+	'phablet': 560px,
+	'tablet-small': 640px,
+	'tablet': 768px,
+	'tablet-med': 900px,
+	'tablet-wide': 1024px,
+	'desktop-small': 1150px,
+	'desktop': 1248px,
+	'desktop-wide': 1440px,
+	'ultra-wide': 2000px
+);
+
+@mixin mq($width, $type: min) {
+	@if map_has_key($breakpoints, $width) {
+		$width: map_get($breakpoints, $width);
+		@if $type == max {
+			$width: $width - 1px;
+		}
+		@media only screen and (#{$type}-width: $width) {
+			@content;
+		}
+	}
+}
+
 html[data-theme='🌛 Night'] {
 	//  *MAIN
 	color-scheme: dark;
@@ -179,13 +206,43 @@ html {
 	background-color: var(--bgdMain);
 }
 
+.content_box {
+	display: block;
+	background: var(--boxBgd);
+	width: 100%;
+	max-width: 1150px;
+	border: 1px solid var(--textFade);
+	padding: 0.75rem 2rem;
+	margin: 2rem auto;
+	border-radius: 0.3rem;
+	// min-height: 60vh;
+}
+
 // GLOBALS
 .player_container {
+	margin: 3rem auto;
+	.download_btn {
+		svg {
+			.target_fill {
+				fill: var(--player6);
+			}
+		}
+	}
 	.player_controls {
 		.repeat_btn {
 			svg {
-				height: 1.75rem;
-				width: 1.75rem;
+				height: 1.9rem;
+				width: 1.9rem;
+				.target_fill {
+					fill: var(--player4_dark);
+				}
+			}
+			&.loop_on {
+				svg {
+					.target_fill {
+						fill: var(--player4);
+					}
+				}
 			}
 		}
 		.fwd_btn,

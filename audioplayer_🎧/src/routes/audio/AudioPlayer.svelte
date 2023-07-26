@@ -46,12 +46,14 @@
 	.player_container {
 		width: 100%;
 		max-width: 800px;
-		margin: auto;
 		border: 1px solid var(--textFade);
-		border-radius: 0.6rem;
+		border-top-left-radius: 0.6rem;
+		border-top-right-radius: 0.6rem;
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 		.player_body {
 			background: var(--player2);
+			// border-bottom-left-radius: 0.6rem;
+			// border-bottom-right-radius: 0.6rem;
 		}
 	}
 </style>

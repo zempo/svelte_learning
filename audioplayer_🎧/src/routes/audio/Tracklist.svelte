@@ -33,16 +33,17 @@
 
 <style lang="scss">
 	.tracklist_container {
-		// border: 1px solid green;
 		color: var(--player6);
 		font-weight: bold;
-		// border-bottom-left-radius: 0.3rem;
-		// border-bottom-right-radius: 0.3rem;
+		// border-bottom-left-radius: 0.6rem;
+		// border-bottom-right-radius: 0.6rem;
 		button {
 			width: 100%;
 			background: var(--playerBtnBgd);
 			color: var(--player6);
 			border: none;
+			// border-bottom-left-radius: 0.6rem;
+			// border-bottom-right-radius: 0.6rem;
 			padding: 0.5rem;
 			cursor: pointer;
 			font-weight: bold;

@@ -1,9 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
 	import { getPlaybackSpeed } from './scripts/audioHelpers';
-	import { backBtn, fwdBtn, pauseBtn, playBtn, repeatBtn } from './scripts/icons';
+	import { backBtn, fwdBtn, pauseBtn, playBtn, repeatBtn, repeatBtnOn } from './scripts/icons';
 
 	let isPlaying = false;
+	let loopOn = false;
 	let speedIdx = 3;
 	let speed = 1;
 
@@ -24,16 +25,28 @@
 		}
 		speed = speeds[speedIdx];
 	};
+
+	const toggleLoop = () => {
+		loopOn = !loopOn;
+	};
 </script>
 
 <div class="player_controls">
 	<div class="control_grp left">
-		<button class="repeat_btn">
-			{@html repeatBtn}
+		<button
+			class={`repeat_btn ${loopOn ? 'loop_on' : 'loop_off'}`}
+			on:click={toggleLoop}
+			title="Loop Track"
+		>
+			{#if loopOn}
+				{@html repeatBtnOn}
+			{:else}
+				{@html repeatBtn}
+			{/if}
 		</button>
 	</div>
 	<div class="control_grp middle">
-		<button class="back_btn">
+		<button class="back_btn" title="Back 10 secs">
 			{@html backBtn} 10
 		</button>
 		<button class="play_btn" on:click={togglePlaying}>
@@ -43,7 +56,7 @@
 				{@html playBtn}
 			{/if}
 		</button>
-		<button class="fwd_btn">
+		<button class="fwd_btn" title="FFwd 10 secs">
 			10 {@html fwdBtn}
 		</button>
 	</div>
@@ -68,7 +81,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin: auto 0.75rem;
+			margin: auto 0;
 			// .left {
 			// }
 			.repeat_btn {
