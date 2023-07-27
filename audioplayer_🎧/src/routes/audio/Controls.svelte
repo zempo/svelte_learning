@@ -1,15 +1,27 @@
 <script>
 	// @ts-nocheck
+	// import { getContext, setContext } from 'svelte';
+
+	import { toggle, set, incr, getAUD, speeds } from './context/audioContext';
 	import { getPlaybackSpeed } from './scripts/audioHelpers';
 	import { backBtn, fwdBtn, pauseBtn, playBtn, repeatBtn, repeatBtnOn } from './scripts/icons';
-	import {
-		loopOn,
-		isPlaying,
-		speed,
-		togglePlay,
-		toggleLoop,
-		toggleSpeed
-	} from './scripts/audioStore';
+
+	let loopOn = getAUD('loopOn');
+	let paused = getAUD('paused');
+	let playing = getAUD('playing');
+	let playbackRate = getAUD('playbackRate');
+	let playbackIdx = getAUD('playbackIdx');
+
+	const toggleLoop = () => toggle(loopOn);
+	const togglePlay = () => toggle(paused);
+	const togglePlayback = () => {
+		if ($playbackIdx === speeds.length - 1) {
+			set(playbackIdx, 0);
+		} else {
+			incr(playbackIdx, 1);
+		}
+		set(playbackRate, speeds[$playbackIdx]);
+	};
 </script>
 
 <div class="player_controls">
@@ -31,7 +43,7 @@
 			{@html backBtn} 10
 		</button>
 		<button class="play_btn" on:click={togglePlay}>
-			{#if $isPlaying}
+			{#if $playing}
 				{@html pauseBtn}
 			{:else}
 				{@html playBtn}
@@ -42,10 +54,10 @@
 		</button>
 	</div>
 	<div class="control_grp right">
-		<button class="speed_btn" on:click={toggleSpeed} title="Playback Speed">
-			{@html getPlaybackSpeed($speed)}
+		<button class="speed_btn" on:click={togglePlayback} title="Playback Speed">
+			{@html getPlaybackSpeed($playbackRate)}
 			<span class="speed_label">
-				{$speed}x
+				{$playbackRate}x
 			</span>
 		</button>
 	</div>
@@ -63,12 +75,9 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin: auto 1vw;
 			// .left {
 			// }
 			.repeat_btn {
-				width: 3.25rem;
-				height: 2.5rem;
 				background: var(--playerBtnBgd);
 				border: 1px solid var(--playerBtnBgd);
 				border-radius: 0.3rem;
@@ -100,8 +109,6 @@
 				background-color: var(--playerBtnBgd);
 				color: var(--player5);
 				border: 1px solid var(--playerBtnBgd);
-				width: 3.25rem;
-				height: 2.5rem;
 				cursor: pointer;
 				.speed_label {
 					display: block;

@@ -1,64 +1,89 @@
 <script>
 	// @ts-nocheck
-	import {
-		trackIdx,
-		trackTitle,
-		currFile,
-		loopOn,
-		updateFile,
-		totalTrackTime,
-		loadMeta
-	} from './scripts/audioStore';
-	import { incr } from './scripts/audioHelpers';
+	// import {
+	// 	trackIdx,
+	// 	trackTitle,
+	// 	currFile,
+	// 	loopOn,
+	// 	updateFile,
+	// 	totalTrackTime,
+	// 	loadMeta
+	// } from './scripts/audioStore';
+	import { getAUD, initControls, initFile, set } from './context/audioContext';
 	import { onMount } from 'svelte';
 
 	import AudioHead from './AudioHead.svelte';
 	import Controls from './Controls.svelte';
 	import Tracklist from './Tracklist.svelte';
 	import Slider from './Slider.svelte';
+	// import { derived } from 'svelte/store';
 
-	import { get } from 'svelte/store';
+	// import { get } from 'svelte/store';
 
 	export let audioData;
+	// optional start idx prop
+	export let initIdx = 0;
 
-	// Get Audio track
-	trackTitle.set(audioData[$trackIdx].name);
+	let audio;
+
+	initFile(audioData[initIdx], initIdx);
+	initControls();
+
+	/**
+	 * *INIT AUDIO
+	 */
+	// Track info
+	let trackSrc = getAUD('trackSrc');
+	let duration = getAUD('duration');
+	// Controls
+	let paused = getAUD('paused');
+	// let playing = derived(paused, ($paused) => !$paused);
+	let playbackRate = getAUD('playbackRate');
+	let volume = getAUD('volume');
+
 	onMount(() => {
-		// currFile.set(new Audio(audioData[$trackIdx].url));
-		updateFile(audioData, $trackIdx);
-		loadMeta($currFile);
-		// console.log(get(currFile));
+		audio.onloadedmetadata = () => {
+			set(duration, audio?.duration);
+		};
 	});
 
-	const loadTrack = () => {
-		updateFile(audioData, $trackIdx);
-		$currFile.onloadedmetadata = () => {
-			totalTrackTime.set($currFile.duration);
-			updateTime();
-		};
-		trackTitle.set(audioData[$trackIdx].name);
-	};
+	// const loadTrack = () => {
+	// 	updateFile(audioData, $trackIdx);
+	// 	$currFile.onloadedmetadata = () => {
+	// 		totalTrackTime.set($currFile.duration);
+	// 		updateTime();
+	// 	};
+	// 	trackTitle.set(audioData[$trackIdx].name);
+	// };
 
-	const autoPlayNextTrack = () => {
-		if ($loopOn) {
-			// loop curr track
-			loadTrack();
-			$currFile.play();
-		} else if ($trackIdx <= audioData.length - 1) {
-			incr(trackIdx, 1);
-			loadTrack();
-			$currFile.play();
-		} else {
-			trackIdx.set(0);
-			loadTrack();
-			$currFile.play();
-		}
-	};
+	// const autoPlayNextTrack = () => {
+	// 	if ($loopOn) {
+	// 		loadTrack();
+	// 		$currFile.play();
+	// 	} else if ($trackIdx <= audioData.length - 1) {
+	// 		incr(trackIdx, 1);
+	// 		loadTrack();
+	// 		$currFile.play();
+	// 	} else {
+	// 		trackIdx.set(0);
+	// 		loadTrack();
+	// 		$currFile.play();
+	// 	}
+	// };
 </script>
 
 <section class="player_container">
 	<AudioHead />
 	<div class="player_body">
+		<audio
+			bind:volume={$volume}
+			bind:duration={$duration}
+			bind:paused={$paused}
+			bind:playbackRate={$playbackRate}
+			bind:this={audio}
+			src={$trackSrc}
+			style="display: none;"
+		/>
 		<Slider />
 		<Controls />
 		<Tracklist trackList={audioData} />

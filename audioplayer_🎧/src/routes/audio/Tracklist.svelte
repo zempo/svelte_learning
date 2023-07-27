@@ -2,25 +2,25 @@
 	// @ts-nocheck
 
 	import { fade } from 'svelte/transition';
-	// @ts-nocheck
+	import { getAUD, toggle } from './context/audioContext';
 
 	// @ts-ignore
 	export let trackList;
 
-	let listShowing = false;
+	let tracklistOpen = getAUD('tracklistOpen');
 
-	const showTracklist = () => (listShowing = !listShowing);
+	const toggleTracklist = () => toggle(tracklistOpen);
 </script>
 
 <div class="tracklist_container">
-	<button class:active={listShowing} on:click={showTracklist}>
-		{#if listShowing}
+	<button class:active={$tracklistOpen} on:click={toggleTracklist}>
+		{#if $tracklistOpen}
 			&#9776; Hide Tracklist
 		{:else}
 			&#9776; Expand Tracklist
 		{/if}
 	</button>
-	{#if listShowing}
+	{#if $tracklistOpen}
 		<ul class="tracks_list" transition:fade|global={{ duration: 250 }}>
 			{#each trackList as { name }, idx}
 				<li data-track-id={idx} on:click>

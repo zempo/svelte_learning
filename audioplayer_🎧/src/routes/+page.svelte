@@ -1,9 +1,12 @@
 <script>
+	// @ts-nocheck
+
 	import { browser } from '$app/environment';
 	import '$lib/scss/global.scss';
 	import { onMount } from 'svelte';
 	import AudioPlayer from './audio/AudioPlayer.svelte';
 	import { audioData } from './audio/scripts/data';
+	// import AudioHead from './audio/AudioHead.svelte';
 
 	const themes = {
 		'🌛 Night': { name: '🌛 Night', toolTip: 'Switch to Light Mode' },
@@ -88,6 +91,7 @@
 			ipsam eaque reprehenderit, at iste numquam? Pariatur, reiciendis itaque unde aspernatur
 			obcaecati quo! Optio numquam esse officia et soluta.
 		</p>
+		<AudioPlayer {audioData} initIdx={2} />
 		<p>
 			Dignissimos ipsa obcaecati natus eaque nulla quibusdam vitae quasi necessitatibus ducimus vel
 			ullam neque, at quidem dolorem provident aliquam, totam ea minima laudantium, esse amet
@@ -166,7 +170,7 @@
 		max-width: 1200px;
 		margin: auto;
 		.content_box h2 {
-			text-align: center;
+			// text-align: center;
 		}
 	}
 </style>

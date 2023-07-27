@@ -10,18 +10,6 @@ import {
 	playbackWalk
 } from './icons';
 
-export const toggle = (store) => {
-	store.update((s) => !s);
-};
-
-export const incr = (store, val) => {
-	store.update((s) => s + val);
-};
-
-export const decr = (store, val) => {
-	store.update((s) => s - val);
-};
-
 // @ts-nocheck
 export const toHHMMSS = (sec_num) => {
 	if (isNaN(sec_num)) {

@@ -21,8 +21,10 @@
 
 <style lang="scss">
 	.slider {
-		padding: 1.5rem 2rem 0.75rem;
+		padding: 1.5rem 1.5rem 0.75rem;
 		// border: 1px solid red;
+		max-width: 40rem;
+		margin: auto;
 		input[type='range'] {
 			width: 100%;
 			margin: auto;

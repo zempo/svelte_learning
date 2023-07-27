@@ -1,15 +1,33 @@
 <script>
 	// @ts-nocheck
+	import { getAUD, toggle } from './context/audioContext.js';
 
-	import { trackTitle } from './scripts/audioStore.js';
-	import { downloadIcon } from './scripts/icons.js';
+	// import { trackTitle } from './scripts/audioStore.js';
+	import { downloadIcon, transcriptIcon } from './scripts/icons.js';
+
+	let trackTitle = getAUD('trackTitle');
+	let trackSrc = getAUD('trackSrc');
+	// let trackDownload = getAUD('trackDownload');
+	// const toggleDownload = () => toggle(trackDownload);
+	const downloadFile = () => {
+		console.log($trackSrc);
+		// https://www.sitepoint.com/community/t/javascript-file-download/3854/2
+	};
 </script>
 
 <div class="audio_header">
-	<h3>{$trackTitle}</h3>
-	<button title="Download Track" class="download_btn">
-		{@html downloadIcon}
-	</button>
+	<h3>
+		{$trackTitle}
+		<!-- {$trackDownload} -->
+	</h3>
+	<div class="head_controls">
+		<button class="download_btn">
+			{@html transcriptIcon}
+		</button>
+		<button title="Download Track" class="download_btn" on:click={downloadFile}>
+			{@html downloadIcon}
+		</button>
+	</div>
 </div>
 
 <style lang="scss">
@@ -28,12 +46,18 @@
 		h3 {
 			margin: 0;
 		}
-		.download_btn {
-			background-color: var(--player2);
-			border: 1px solid var(--textFade);
-			padding: 0.2rem;
-			border-radius: 0.2rem;
-			cursor: pointer;
+		.head_controls {
+			display: flex;
+			align-items: center;
+			.download_btn {
+				display: block;
+				background-color: var(--player2);
+				border: 1px solid var(--textFade);
+				padding: 0.2rem;
+				border-radius: 0.2rem;
+				margin: 0 0.25rem;
+				cursor: pointer;
+			}
 		}
 	}
 </style>
