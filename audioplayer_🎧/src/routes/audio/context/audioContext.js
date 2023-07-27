@@ -37,6 +37,8 @@ export const initFile = (currItem, initial) => {
 	let trackTitle = writable(currItem.name);
 	let trackSrc = writable(currItem.url);
 	let duration = writable(0);
+	let ended = writable(false);
+	// Tracklist / Transcript / Download
 	let trackDownload = writable(false);
 	let tracklistOpen = writable(false);
 
@@ -44,16 +46,10 @@ export const initFile = (currItem, initial) => {
 	setContext('trackTitle', trackTitle);
 	setContext('trackSrc', trackSrc);
 	setContext('duration', duration);
+	setContext('ended', ended);
 	setContext('trackDownload', trackDownload);
 	setContext('tracklistOpen', tracklistOpen);
 };
-
-// pass in audio data
-// export const updateFile = (data) => {
-// 	let trackIdx = getContext('trackIdx');
-
-// 	setContext('currFile', new Audio(data[trackIdx].url));
-// };
 
 /**
  * *CONTROLS
@@ -63,14 +59,16 @@ export const initControls = () => {
 	let paused = writable(true);
 	let playbackRate = writable(1);
 	let playbackIdx = writable(3);
-	let volume = writable(1);
 	let loopOn = writable(false);
+	let muted = writable(false);
+	let volume = writable(1);
 
-	setContext('volume', volume);
 	setContext('paused', paused);
-	setContext('loopOn', loopOn);
 	setContext('playbackIdx', playbackIdx);
 	setContext('playbackRate', playbackRate);
+	setContext('loopOn', loopOn);
+	setContext('muted', muted);
+	setContext('volume', volume);
 
 	setContext(
 		'playing',

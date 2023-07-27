@@ -90,6 +90,7 @@ html[data-theme='🌛 Night'] {
 	--player4_dark: #a1bd88;
 	--player5: #e5bbed;
 	--player6: #eceff4;
+	--player7: #e9334b;
 
 	//  *FOOTER
 	// --footerBdg: #6c2245;
@@ -172,6 +173,7 @@ html[data-theme='☀️ Daylight'] {
 	--player4_dark: #a1bd88;
 	--player5: #e5bbed;
 	--player6: #eceff4;
+	--player7: #e9334b;
 
 	$voColors: (
 		player-primary: #535146,
@@ -225,10 +227,22 @@ html {
 .player_container {
 	margin: 3rem auto;
 	// margin: 3rem 0;
-	.download_btn {
+	.download_btn,
+	.vol_btn,
+	.transcript_btn {
 		svg {
 			.target_fill {
 				fill: var(--player6);
+			}
+			.target_stroke {
+				stroke: var(--player6);
+			}
+		}
+		&.muted {
+			svg {
+				.target_stroke {
+					stroke: var(--player7);
+				}
 			}
 		}
 	}

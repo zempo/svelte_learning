@@ -35,11 +35,13 @@
 	// Track info
 	let trackSrc = getAUD('trackSrc');
 	let duration = getAUD('duration');
+	let ended = getAUD('ended');
 	// Controls
 	let paused = getAUD('paused');
 	// let playing = derived(paused, ($paused) => !$paused);
 	let playbackRate = getAUD('playbackRate');
 	let volume = getAUD('volume');
+	let muted = getAUD('muted');
 
 	onMount(() => {
 		audio.onloadedmetadata = () => {
@@ -78,7 +80,9 @@
 		<audio
 			bind:volume={$volume}
 			bind:duration={$duration}
+			bind:muted={$muted}
 			bind:paused={$paused}
+			bind:ended={$ended}
 			bind:playbackRate={$playbackRate}
 			bind:this={audio}
 			src={$trackSrc}

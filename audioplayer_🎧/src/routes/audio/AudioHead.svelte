@@ -3,12 +3,14 @@
 	import { getAUD, toggle } from './context/audioContext.js';
 
 	// import { trackTitle } from './scripts/audioStore.js';
-	import { downloadIcon, transcriptIcon } from './scripts/icons.js';
+	import { downloadIcon, muteIcon, transcriptIcon, volumeIcon } from './scripts/icons.js';
 
+	let volume = getAUD('volume');
+	let muted = getAUD('muted');
 	let trackTitle = getAUD('trackTitle');
 	let trackSrc = getAUD('trackSrc');
 	// let trackDownload = getAUD('trackDownload');
-	// const toggleDownload = () => toggle(trackDownload);
+	const toggleVolume = () => toggle(muted);
 	const downloadFile = () => {
 		console.log($trackSrc);
 		// https://www.sitepoint.com/community/t/javascript-file-download/3854/2
@@ -21,7 +23,18 @@
 		<!-- {$trackDownload} -->
 	</h3>
 	<div class="head_controls">
-		<button class="download_btn">
+		<button
+			class={`vol_btn ${$muted ? 'muted' : ''}`}
+			on:click={toggleVolume}
+			title={`${$muted ? 'Unmute' : 'Mute'}`}
+		>
+			{#if $muted}
+				{@html muteIcon}
+			{:else}
+				{@html volumeIcon}
+			{/if}
+		</button>
+		<button class="transcript_btn">
 			{@html transcriptIcon}
 		</button>
 		<button title="Download Track" class="download_btn" on:click={downloadFile}>
@@ -49,7 +62,9 @@
 		.head_controls {
 			display: flex;
 			align-items: center;
-			.download_btn {
+			.download_btn,
+			.vol_btn,
+			.transcript_btn {
 				display: block;
 				background-color: var(--player2);
 				border: 1px solid var(--textFade);
