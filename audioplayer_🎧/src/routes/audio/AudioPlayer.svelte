@@ -35,6 +35,7 @@
 	let loopOn = getAUD('loopOn');
 	let paused = getAUD('paused');
 	let playbackRate = getAUD('playbackRate');
+	let playbackIdx = getAUD('playbackIdx');
 	let volume = getAUD('volume');
 	let muted = getAUD('muted');
 
@@ -47,7 +48,7 @@
 	/**
 	 * *Next Track
 	 */
-	export const loadNextTrack = (data) => {
+	const loadNextTrack = (data) => {
 		let len = data.length;
 		/**
 		 * !Exit Case
@@ -63,6 +64,7 @@
 			set(trackTitle, nextTrack.name);
 			set(trackSrc, nextTrack.url);
 			set(trackTimeStamps, nextTrack.timeStamps);
+			set(playbackIdx, 3);
 			set(currentTime, 0);
 			set(duration, 0);
 			set(ended, false);
@@ -71,31 +73,29 @@
 				set(duration, audio?.duration);
 				set(paused, false);
 			};
-
-			// let trackIdx = writable(initial);
-			// let trackTitle = writable(currItem.name);
-			// let trackSrc = writable(currItem.url);
-			// let duration = writable(0);
-			// let currentTime = writable(0);
-			// let ended = writable(false);
-			console.log('ended!', data, len, $trackIdx, nextTrack);
 		}
 	};
 
-	const handleTrack = (e) => {
+	const handleTrack = (e, data) => {
+		// if playing, stop playing
+		set(paused, true);
+		// update idx, target
 		let targetIdx = e.target.dataset.trackId;
-		console.log(targetIdx);
-		// if (!isPlaying) {
-		// 	trackIndex = Number(e.target.dataset.trackId);
-		// 	loadTrack();
-		// 	playPauseAudio(); // auto play
-		// } else {
-		// 	isPlaying = false;
-		// 	audioFile.pause();
-		// 	trackIndex = Number(e.target.dataset.trackId);
-		// 	loadTrack();
-		// 	playPauseAudio(); // auto play
-		// }
+		let targetTrack = data[targetIdx];
+		// update file data
+		set(trackIdx, Number(targetIdx));
+		set(trackTitle, targetTrack.name);
+		set(trackSrc, targetTrack.url);
+		set(trackTimeStamps, targetTrack.timeStamps);
+		set(playbackIdx, 3);
+		set(currentTime, 0);
+		set(duration, 0);
+		set(ended, false);
+
+		audio.onloadedmetadata = () => {
+			set(duration, audio?.duration);
+			set(paused, false);
+		};
 	};
 </script>
 
@@ -115,10 +115,10 @@
 			src={$trackSrc}
 			loop={$loopOn}
 			style="display: none;"
-		/>
+		/>{$trackIdx}
 		<Slider />
 		<Controls />
-		<Tracklist trackList={audioData} on:click={handleTrack} />
+		<Tracklist trackList={audioData} on:click={(e) => handleTrack(e, audioData)} />
 	</div>
 </section>
 
