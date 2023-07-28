@@ -91,7 +91,7 @@
 			ipsam eaque reprehenderit, at iste numquam? Pariatur, reiciendis itaque unde aspernatur
 			obcaecati quo! Optio numquam esse officia et soluta.
 		</p>
-		<AudioPlayer {audioData} initIdx={2} />
+		<AudioPlayer {audioData} initIdx={5} />
 		<p>
 			Dignissimos ipsa obcaecati natus eaque nulla quibusdam vitae quasi necessitatibus ducimus vel
 			ullam neque, at quidem dolorem provident aliquam, totam ea minima laudantium, esse amet

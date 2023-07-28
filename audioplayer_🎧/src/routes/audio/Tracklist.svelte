@@ -35,23 +35,17 @@
 	.tracklist_container {
 		color: var(--player6);
 		font-weight: bold;
-		// border-bottom-left-radius: 0.6rem;
-		// border-bottom-right-radius: 0.6rem;
 		button {
 			width: 100%;
 			background: var(--playerBtnBgd);
 			color: var(--player6);
 			border: none;
-			// border-bottom-left-radius: 0.6rem;
-			// border-bottom-right-radius: 0.6rem;
 			padding: 0.5rem;
 			cursor: pointer;
 			font-weight: bold;
-			// margin-bottom: 0;
 		}
 		.tracks_list {
 			margin: 0;
-			// height: 0;
 			overflow: auto;
 			background: var(--player1);
 			list-style-type: none;

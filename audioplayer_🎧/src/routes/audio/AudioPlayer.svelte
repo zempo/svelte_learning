@@ -1,14 +1,5 @@
 <script>
 	// @ts-nocheck
-	// import {
-	// 	trackIdx,
-	// 	trackTitle,
-	// 	currFile,
-	// 	loopOn,
-	// 	updateFile,
-	// 	totalTrackTime,
-	// 	loadMeta
-	// } from './scripts/audioStore';
 	import { getAUD, initControls, initFile, set } from './context/audioContext';
 	import { onMount } from 'svelte';
 
@@ -33,13 +24,16 @@
 	 * *INIT AUDIO
 	 */
 	// Track info
+	let trackIdx = getAUD('trackIdx');
+	let trackTitle = getAUD('trackTitle');
+	let trackTimeStamps = getAUD('trackTimeStamps');
 	let trackSrc = getAUD('trackSrc');
 	let duration = getAUD('duration');
 	let currentTime = getAUD('currentTime');
 	let ended = getAUD('ended');
 	// Controls
+	let loopOn = getAUD('loopOn');
 	let paused = getAUD('paused');
-	// let playing = derived(paused, ($paused) => !$paused);
 	let playbackRate = getAUD('playbackRate');
 	let volume = getAUD('volume');
 	let muted = getAUD('muted');
@@ -50,29 +44,59 @@
 		};
 	});
 
-	// const loadTrack = () => {
-	// 	updateFile(audioData, $trackIdx);
-	// 	$currFile.onloadedmetadata = () => {
-	// 		totalTrackTime.set($currFile.duration);
-	// 		updateTime();
-	// 	};
-	// 	trackTitle.set(audioData[$trackIdx].name);
-	// };
+	/**
+	 * *Next Track
+	 */
+	export const loadNextTrack = (data) => {
+		let len = data.length;
+		/**
+		 * !Exit Case
+		 * */
+		if (len === $trackIdx + 1) {
+			set(currentTime, 0);
+		} else {
+			let nextTrack = data[$trackIdx + 1];
+			let newIdx = $trackIdx + 1;
 
-	// const autoPlayNextTrack = () => {
-	// 	if ($loopOn) {
-	// 		loadTrack();
-	// 		$currFile.play();
-	// 	} else if ($trackIdx <= audioData.length - 1) {
-	// 		incr(trackIdx, 1);
-	// 		loadTrack();
-	// 		$currFile.play();
-	// 	} else {
-	// 		trackIdx.set(0);
-	// 		loadTrack();
-	// 		$currFile.play();
-	// 	}
-	// };
+			// update file data
+			set(trackIdx, newIdx);
+			set(trackTitle, nextTrack.name);
+			set(trackSrc, nextTrack.url);
+			set(trackTimeStamps, nextTrack.timeStamps);
+			set(currentTime, 0);
+			set(duration, 0);
+			set(ended, false);
+
+			audio.onloadedmetadata = () => {
+				set(duration, audio?.duration);
+				set(paused, false);
+			};
+
+			// let trackIdx = writable(initial);
+			// let trackTitle = writable(currItem.name);
+			// let trackSrc = writable(currItem.url);
+			// let duration = writable(0);
+			// let currentTime = writable(0);
+			// let ended = writable(false);
+			console.log('ended!', data, len, $trackIdx, nextTrack);
+		}
+	};
+
+	const handleTrack = (e) => {
+		let targetIdx = e.target.dataset.trackId;
+		console.log(targetIdx);
+		// if (!isPlaying) {
+		// 	trackIndex = Number(e.target.dataset.trackId);
+		// 	loadTrack();
+		// 	playPauseAudio(); // auto play
+		// } else {
+		// 	isPlaying = false;
+		// 	audioFile.pause();
+		// 	trackIndex = Number(e.target.dataset.trackId);
+		// 	loadTrack();
+		// 	playPauseAudio(); // auto play
+		// }
+	};
 </script>
 
 <section class="player_container">
@@ -85,14 +109,16 @@
 			bind:muted={$muted}
 			bind:paused={$paused}
 			bind:ended={$ended}
+			on:ended={loadNextTrack(audioData)}
 			bind:playbackRate={$playbackRate}
 			bind:this={audio}
 			src={$trackSrc}
+			loop={$loopOn}
 			style="display: none;"
 		/>
 		<Slider />
 		<Controls />
-		<Tracklist trackList={audioData} />
+		<Tracklist trackList={audioData} on:click={handleTrack} />
 	</div>
 </section>
 
