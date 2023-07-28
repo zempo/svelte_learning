@@ -35,6 +35,7 @@
 	// Track info
 	let trackSrc = getAUD('trackSrc');
 	let duration = getAUD('duration');
+	let currentTime = getAUD('currentTime');
 	let ended = getAUD('ended');
 	// Controls
 	let paused = getAUD('paused');
@@ -80,6 +81,7 @@
 		<audio
 			bind:volume={$volume}
 			bind:duration={$duration}
+			bind:currentTime={$currentTime}
 			bind:muted={$muted}
 			bind:paused={$paused}
 			bind:ended={$ended}

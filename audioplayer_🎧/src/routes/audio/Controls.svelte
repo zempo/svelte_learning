@@ -2,18 +2,36 @@
 	// @ts-nocheck
 	// import { getContext, setContext } from 'svelte';
 
-	import { toggle, set, incr, getAUD, speeds } from './context/audioContext';
+	import { toggle, set, incr, getAUD, speeds, decr } from './context/audioContext';
 	import { getPlaybackSpeed } from './scripts/audioHelpers';
 	import { backBtn, fwdBtn, pauseBtn, playBtn, repeatBtn, repeatBtnOn } from './scripts/icons';
 
 	let loopOn = getAUD('loopOn');
 	let paused = getAUD('paused');
 	let playing = getAUD('playing');
+	let duration = getAUD('duration');
+	let currentTime = getAUD('currentTime');
 	let playbackRate = getAUD('playbackRate');
 	let playbackIdx = getAUD('playbackIdx');
 
 	const toggleLoop = () => toggle(loopOn);
 	const togglePlay = () => toggle(paused);
+
+	const seekBy = (x) => {
+		let limit = $currentTime + x;
+		if (x < 0) {
+			if (limit <= 0) {
+				set(currentTime, 0);
+			}
+			decr(currentTime, Math.abs(x));
+		} else {
+			if (limit >= $duration) {
+				set(currentTime, $duration);
+			}
+			incr(currentTime, x);
+		}
+	};
+
 	const togglePlayback = () => {
 		if ($playbackIdx === speeds.length - 1) {
 			set(playbackIdx, 0);
@@ -39,7 +57,7 @@
 		</button>
 	</div>
 	<div class="control_grp middle">
-		<button class="back_btn" title="Back 10 secs">
+		<button class="back_btn" title="Back 10 secs" on:click={() => seekBy(-10)}>
 			{@html backBtn} 10
 		</button>
 		<button class="play_btn" on:click={togglePlay}>
@@ -49,7 +67,7 @@
 				{@html playBtn}
 			{/if}
 		</button>
-		<button class="fwd_btn" title="FFwd 10 secs">
+		<button class="fwd_btn" title="FFwd 10 secs" on:click={() => seekBy(10)}>
 			10 {@html fwdBtn}
 		</button>
 	</div>

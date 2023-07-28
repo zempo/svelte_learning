@@ -37,6 +37,7 @@ export const initFile = (currItem, initial) => {
 	let trackTitle = writable(currItem.name);
 	let trackSrc = writable(currItem.url);
 	let duration = writable(0);
+	let currentTime = writable(0);
 	let ended = writable(false);
 	// Tracklist / Transcript / Download
 	let trackDownload = writable(false);
@@ -46,6 +47,7 @@ export const initFile = (currItem, initial) => {
 	setContext('trackTitle', trackTitle);
 	setContext('trackSrc', trackSrc);
 	setContext('duration', duration);
+	setContext('currentTime', currentTime);
 	setContext('ended', ended);
 	setContext('trackDownload', trackDownload);
 	setContext('tracklistOpen', tracklistOpen);
