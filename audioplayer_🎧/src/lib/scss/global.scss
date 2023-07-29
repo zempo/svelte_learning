@@ -86,6 +86,7 @@ html[data-theme='🌛 Night'] {
 	--playerBgd: #2e3440;
 	--playerBtnBgd: #464d5c;
 	--player3: #99d4ce;
+	--player3_dark: #278a8c;
 	--player4: #b6d59a;
 	--player4_dark: #a1bd88;
 	--player5: #e5bbed;
@@ -169,6 +170,7 @@ html[data-theme='☀️ Daylight'] {
 	--playerBgd: #2e3440;
 	--playerBtnBgd: #464d5c;
 	--player3: #99d4ce;
+	--player3_dark: #278a8c;
 	--player4: #b6d59a;
 	--player4_dark: #a1bd88;
 	--player5: #e5bbed;
@@ -239,9 +241,21 @@ html {
 			}
 		}
 		&.muted {
+			background: var(--playerBtnBgd) !important;
 			svg {
 				.target_stroke {
 					stroke: var(--player7);
+				}
+			}
+		}
+		&.showing {
+			background: var(--playerBtnBgd) !important;
+			svg {
+				.target_fill {
+					fill: var(--player3);
+				}
+				.target_stroke {
+					stroke: var(--player1);
 				}
 			}
 		}

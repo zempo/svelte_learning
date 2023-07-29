@@ -1,16 +1,17 @@
 <script>
 	// @ts-nocheck
-	// import { getContext, setContext } from 'svelte';
-
 	import { toggle, set, incr, getAUD, speeds, decr } from './context/audioContext';
 	import { getPlaybackSpeed } from './scripts/audioHelpers';
 	import { backBtn, fwdBtn, pauseBtn, playBtn, repeatBtn, repeatBtnOn } from './scripts/icons';
+	import { fade } from 'svelte/transition';
 
 	let loopOn = getAUD('loopOn');
 	let paused = getAUD('paused');
 	let playing = getAUD('playing');
 	let duration = getAUD('duration');
 	let currentTime = getAUD('currentTime');
+	let transcript = getAUD('transcript');
+	let showTranscript = getAUD('showTranscript');
 	let playbackRate = getAUD('playbackRate');
 	let playbackIdx = getAUD('playbackIdx');
 
@@ -80,15 +81,35 @@
 		</button>
 	</div>
 </div>
+{#if $showTranscript}
+	<article class="transcript" transition:fade|global={{ duration: 250 }}>
+		{#each $transcript as Line}
+			<p>{Line}</p>
+		{/each}
+	</article>
+{/if}
 
 <style lang="scss">
+	.transcript {
+		background: var(--player2);
+		color: var(--player3);
+		padding: 1rem 1.5rem;
+		border-top: 0.75rem solid var(--player1);
+		p {
+			font-family: 'Courier New', Courier, monospace;
+			font-weight: bold;
+			margin: 0 auto;
+			line-height: 2.25;
+			// text-transform: uppercase;
+		}
+	}
 	.player_controls {
 		padding: 0.75rem 0.25rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		max-width: 100%;
-		margin-bottom: 0.5rem;
+		margin-bottom: 1rem;
 		.control_grp {
 			display: flex;
 			align-items: center;

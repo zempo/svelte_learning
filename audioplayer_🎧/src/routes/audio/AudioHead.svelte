@@ -1,26 +1,23 @@
 <script>
 	// @ts-nocheck
 	import { getAUD, toggle } from './context/audioContext.js';
-
-	// import { trackTitle } from './scripts/audioStore.js';
 	import { downloadIcon, muteIcon, transcriptIcon, volumeIcon } from './scripts/icons.js';
+	import { fade } from 'svelte/transition';
 
-	let volume = getAUD('volume');
+	// let volume = getAUD('volume');
 	let muted = getAUD('muted');
 	let trackTitle = getAUD('trackTitle');
 	let trackSrc = getAUD('trackSrc');
+	let transcript = getAUD('transcript');
+	let showTranscript = getAUD('showTranscript');
 	// let trackDownload = getAUD('trackDownload');
 	const toggleVolume = () => toggle(muted);
-	const downloadFile = () => {
-		console.log($trackSrc);
-		// https://www.sitepoint.com/community/t/javascript-file-download/3854/2
-	};
+	const toggleTranscript = () => toggle(showTranscript);
 </script>
 
 <div class="audio_header">
 	<h3>
 		{$trackTitle}
-		<!-- {$trackDownload} -->
 	</h3>
 	<div class="head_controls">
 		<button
@@ -34,17 +31,29 @@
 				{@html volumeIcon}
 			{/if}
 		</button>
-		<button class="transcript_btn">
+		<button
+			class={`transcript_btn ${$showTranscript ? 'showing' : ''}`}
+			title={`${$transcript.length === 0 ? 'Transcript Unavailable' : 'View Transcript'}`}
+			disabled={$transcript.length === 0}
+			on:click={toggleTranscript}
+		>
 			{@html transcriptIcon}
 		</button>
-		<button title="Download Track" class="download_btn" on:click={downloadFile}>
+		<a
+			title="Download Track"
+			class="download_btn"
+			role="button"
+			href={$trackSrc}
+			target="_blank"
+			rel="noopener noreferrer"
+			download
+		>
 			{@html downloadIcon}
-		</button>
+		</a>
 	</div>
 </div>
 
 <style lang="scss">
-	/* @import "lib/assets/scss/..." */
 	.audio_header {
 		background: var(--player1);
 		border-top-left-radius: 0.6rem;
@@ -62,6 +71,9 @@
 		.head_controls {
 			display: flex;
 			align-items: center;
+			.download_btn {
+				display: block;
+			}
 			.download_btn,
 			.vol_btn,
 			.transcript_btn {
@@ -72,6 +84,9 @@
 				border-radius: 0.2rem;
 				margin: 0 0.25rem;
 				cursor: pointer;
+				&:disabled {
+					opacity: 0.7;
+				}
 			}
 		}
 	}

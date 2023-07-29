@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getContext, setContext } from 'svelte';
-import { derived, get, writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 // import { toggle } from '../scripts/audioHelpers';
 // import { incr, toggle } from '../scripts/audioHelpers';
 
@@ -35,18 +35,25 @@ export const decr = (store, val) => {
 export const initFile = (currItem, initial) => {
 	let trackIdx = writable(initial);
 	let trackTitle = writable(currItem.name);
+
+	let transcript = writable(currItem.transcript);
+	let showTranscript = writable(false);
 	let trackSrc = writable(currItem.url);
 	let trackTimeStamps = writable(currItem.timeStamps);
 	let duration = writable(0);
 	let currentTime = writable(0);
+	let ratio = writable(0);
 	let ended = writable(false);
 
 	setContext('trackIdx', trackIdx);
 	setContext('trackTitle', trackTitle);
 	setContext('trackSrc', trackSrc);
 	setContext('trackTimeStamps', trackTimeStamps);
+	setContext('transcript', transcript);
+	setContext('showTranscript', showTranscript);
 	setContext('duration', duration);
 	setContext('currentTime', currentTime);
+	setContext('ratio', ratio);
 	setContext('ended', ended);
 };
 

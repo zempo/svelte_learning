@@ -7,9 +7,6 @@
 	import Controls from './Controls.svelte';
 	import Tracklist from './Tracklist.svelte';
 	import Slider from './Slider.svelte';
-	// import { derived } from 'svelte/store';
-
-	// import { get } from 'svelte/store';
 
 	export let audioData;
 	// optional start idx prop
@@ -27,9 +24,12 @@
 	let trackIdx = getAUD('trackIdx');
 	let trackTitle = getAUD('trackTitle');
 	let trackTimeStamps = getAUD('trackTimeStamps');
+	let transcript = getAUD('transcript');
+	let showTranscript = getAUD('showTranscript');
 	let trackSrc = getAUD('trackSrc');
 	let duration = getAUD('duration');
 	let currentTime = getAUD('currentTime');
+	let ratio = getAUD('ratio');
 	let ended = getAUD('ended');
 	// Controls
 	let loopOn = getAUD('loopOn');
@@ -41,7 +41,10 @@
 
 	onMount(() => {
 		audio.onloadedmetadata = () => {
+			let newRatio = 100 / $duration;
 			set(duration, audio?.duration);
+			set(ratio, newRatio);
+			set(trackTimeStamps, audioData[initIdx].timeStamps);
 		};
 	});
 
@@ -63,6 +66,8 @@
 			set(trackIdx, newIdx);
 			set(trackTitle, nextTrack.name);
 			set(trackSrc, nextTrack.url);
+			set(transcript, nextTrack.transcript);
+			set(showTranscript, false);
 			set(trackTimeStamps, nextTrack.timeStamps);
 			set(playbackIdx, 3);
 			set(currentTime, 0);
@@ -70,7 +75,9 @@
 			set(ended, false);
 
 			audio.onloadedmetadata = () => {
+				let newRatio = 100 / $duration;
 				set(duration, audio?.duration);
+				set(ratio, newRatio);
 				set(paused, false);
 			};
 		}
@@ -86,6 +93,8 @@
 		set(trackIdx, Number(targetIdx));
 		set(trackTitle, targetTrack.name);
 		set(trackSrc, targetTrack.url);
+		set(transcript, targetTrack.transcript);
+		set(showTranscript, false);
 		set(trackTimeStamps, targetTrack.timeStamps);
 		set(playbackIdx, 3);
 		set(currentTime, 0);
@@ -93,7 +102,9 @@
 		set(ended, false);
 
 		audio.onloadedmetadata = () => {
+			let newRatio = 100 / $duration;
 			set(duration, audio?.duration);
+			set(ratio, newRatio);
 			set(paused, false);
 		};
 	};
@@ -115,7 +126,7 @@
 			src={$trackSrc}
 			loop={$loopOn}
 			style="display: none;"
-		/>{$trackIdx}
+		/>
 		<Slider />
 		<Controls />
 		<Tracklist trackList={audioData} on:click={(e) => handleTrack(e, audioData)} />
