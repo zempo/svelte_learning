@@ -1,0 +1,18 @@
+// *############ Header ############
+.app_header {
+	.app_navlist {
+		ul {
+			list-style-type: none;
+			display: flex;
+			padding-left: 0;
+			gap: 1.5rem;
+			a {
+				text-decoration: none;
+				color: rgb(40, 21, 58);
+				&.active {
+					color: rgb(98, 52, 141);
+				}
+			}
+		}
+	}
+}

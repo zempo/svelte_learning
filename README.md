@@ -13,11 +13,18 @@ Learning Sveltekit 👨‍💻
 - Building a sveltekit project from scratch: Using pnpm, setting up configuration, etc...
   [from_scratch_🧩](from_scratch_🧩/package.json)
 
+- Going over the basics (and not so basics) of sveltekit's routing system.
+  [routing_🧭](routing_🧭/package.json)
+
 - Building a markdown blog: Using pnpm, mdsvex, making your own api, etc...
   [blog_📰](blog_📰/package.json)
 
-- Going over the basics (and not so basics) of sveltekit's routing system.
-  [routing_🧭](routing_🧭/package.json)
+- An introduction to svelte context
+  [context_🗃](context_🗃/package.json)
+
+- Building a feature-rich audioplayer using stores and context
+  [audioplayer_🎧](audioplayer_🎧/package.json)
+
 
 #### Tutorial Resources
 
