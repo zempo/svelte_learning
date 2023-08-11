@@ -1,7 +1,25 @@
 @use './layout';
 @use './typography';
 
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html[data-theme='day'] {
+	--footerPanel: rgba(84, 206, 215, 0.269);
+	--footerBorderClr: rgba(50, 134, 138, 0.317);
+}
+
 html {
 	background-color: #ffdee9;
 	background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+	.tp-dfwv {
+		top: 7rem;
+	}
 }

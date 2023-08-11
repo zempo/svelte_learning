@@ -22,9 +22,10 @@
 		posZ: 0
 	};
 
+	let pane;
 	onMount(() => {
 		if (browser) {
-			const pane = new Pane({ title: 'Scene' });
+			pane = new Pane({ title: 'Scene' });
 
 			const boxControls = pane.addFolder({ title: 'box' });
 			// boxControls.addInput(box, 'position');
@@ -37,7 +38,11 @@
 		}
 	});
 
-	onDestroy(() => {});
+	onDestroy(() => {
+		console.log(pane, 'yikes!');
+		pane.$destroy();
+		console.log(pane, 'destroyed');
+	});
 </script>
 
 <T.PerspectiveCamera
